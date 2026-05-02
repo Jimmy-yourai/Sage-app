@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SAGE — Apna Raasta, Apni Zindagi</title>
+<meta name="description" content="SAGE — Your AI life companion. A wise guide for purpose, direction and clarity. English, Urdu & Pashto."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- PARTICLES BACKGROUND -->
+<canvas id="particles"></canvas>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-orb">S</div>
+      <div class="logo-text">
+        <span class="logo-name">SAGE</span>
+        <span class="logo-sub">اپنا راستہ، اپنی زندگی</span>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <a href="login.html" class="btn-ghost">Login / لاگ ان</a>
+      <a href="signup.html" class="btn-primary">Sign Up / سائن اپ</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🌟 دنیا کا پہلا اردو + پشتو AI Life Coach</div>
+  <h1 class="hero-title">
+    Meet <em>SAGE</em><br/>
+    <span class="hero-urdu">آپ کا سمجھدار بڑا بھائی</span>
+  </h1>
+  <p class="hero-sub">Not a robot. Not a chatbot. A wise companion who listens, understands, and walks with you — in English, Urdu & Pashto.</p>
+  <div class="hero-btns">
+    <a href="signup.html" class="btn-hero">شروع کریں — It's Free ✨</a>
+    <a href="#features" class="btn-ghost-hero">مزید جانیں ↓</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-n">3</span><span class="stat-l">Languages / زبانیں</span></div>
+    <div class="stat-div"></div>
+    <div class="stat"><span class="stat-n">24/7</span><span class="stat-l">Always Here / ہمیشہ موجود</span></div>
+    <div class="stat-div"></div>
+    <div class="stat"><span class="stat-n">∞</span><span class="stat-l">Free Forever / مفت</span></div>
+  </div>
+</section>
+
+<!-- SHORTCUTS -->
+<section class="shortcuts" id="features">
+  <div class="section-label">SAGE کیا کر سکتا ہے؟</div>
+  <h2 class="section-title">Everything You Need, <em>Right Here</em></h2>
+  <div class="cards-grid">
+
+    <div class="card" onclick="requireLogin()">
+      <div class="card-icon">🎯</div>
+      <h3>Life Coaching<br/><span>زندگی کی رہنمائی</span></h3>
+      <p>Find your purpose, set goals, and build the life you deserve. SAGE walks with you every step.</p>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="card" onclick="requireLogin()">
+      <div class="card-icon">🗣️</div>
+      <h3>Voice Chat<br/><span>آواز سے بات کریں</span></h3>
+      <p>Can't type? Just speak. SAGE listens and talks back in a real human voice — not a robot.</p>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="card" onclick="requireLogin()">
+      <div class="card-icon">🧠</div>
+      <h3>Mental Clarity<br/><span>ذہنی سکون</span></h3>
+      <p>Feeling overwhelmed or lost? SAGE helps you find clarity and peace — without judgment.</p>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="card" onclick="requireLogin()">
+      <div class="card-icon">🌱</div>
+      <h3>Daily Growth<br/><span>روزانہ ترقی</span></h3>
+      <p>Daily wisdom, mood check-ins, and goal tracking. Become 1% better every single day.</p>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="card" onclick="requireLogin()">
+      <div class="card-icon">💼</div>
+      <h3>Career Guide<br/><span>کیریئر رہنمائی</span></h3>
+      <p>Confused about your future? SAGE helps you find the right path for your talents and dreams.</p>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="card" onclick="requireLogin()">
+      <div class="card-icon">❤️</div>
+      <h3>Always Listening<br/><span>ہمیشہ سننے والا</span></h3>
+      <p>3am, no one to talk to? SAGE is always here. No judgment. No lectures. Just real talk.</p>
+      <div class="card-arrow">→</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+  <div class="section-label">یہ کیسے کام کرتا ہے؟</div>
+  <h2 class="section-title">Simple as <em>Talking to a Friend</em></h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Sign Up Free<br/><span>مفت رجسٹر کریں</span></h3>
+      <p>Create your account in 30 seconds. No credit card. No hidden fees. Ever.</p>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Tell SAGE Your Story<br/><span>اپنی بات کریں</span></h3>
+      <p>Type or speak — in English, Urdu or Pashto. SAGE listens and truly understands.</p>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Get Real Guidance<br/><span>حقیقی رہنمائی پائیں</span></h3>
+      <p>Not generic tips. Real, personal guidance from your wise companion who knows YOU.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE SECTION -->
+<section class="quote-section">
+  <div class="quote-orb"></div>
+  <blockquote>
+    "ہر انسان میں بے پناہ صلاحیت ہے — بس ایک سمجھدار ساتھی کی ضرورت ہے۔"
+  </blockquote>
+  <p class="quote-en">"Every human has unlimited potential — they just need a wise companion."</p>
+  <div class="quote-sage">— SAGE</div>
+</section>
+
+<!-- FOUNDER SECTION -->
+<section class="founder-section">
+  <div class="founder-card">
+    <div class="founder-img-wrap">
+      <img src="jimmy.jpg" alt="Jamshaid — Founder of SAGE" class="founder-img"/>
+      <div class="founder-img-ring"></div>
+    </div>
+    <div class="founder-info">
+      <div class="founder-badge">👨‍💻 Founder & CEO</div>
+      <h3 class="founder-name">Jamshaid</h3>
+      <p class="founder-tagline">19 سالہ طالب علم، خیبر پختونخوا، پاکستان</p>
+      <p class="founder-bio">
+        A 19-year-old medical student from KPK who dared to dream big. After completing FSc Pre-Medical from <strong>Islamia College Peshawar</strong>, Jamshaid built SAGE with a simple belief: <em>"Every person — regardless of where they're born — deserves a wise guide."</em>
+      </p>
+      <p class="founder-bio-ur">
+        پشاور کے ایک نوجوان کا خواب — کہ دنیا کا ہر انسان، چاہے وہ کہیں بھی ہو، ایک سمجھدار ساتھی کا حقدار ہے۔
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>آج ہی شروع کریں<br/><em>Start Your Journey Today</em></h2>
+  <p>Free. Always. For everyone. / مفت۔ ہمیشہ۔ سب کے لیے۔</p>
+  <a href="signup.html" class="btn-hero">SAGE سے بات کریں — Talk to SAGE ✨</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">
+    <div class="logo-orb small">S</div>
+    <span>SAGE</span>
+  </div>
+  <p>Built with ❤️ in Pakistan 🇵🇰 | © 2026 SAGE — Jamshaid</p>
+  <p class="footer-sub">اپنا راستہ، اپنی زندگی</p>
+</footer>
+
+<script src="particles.js"></script>
+<script>
+function requireLogin() {
+  const user = localStorage.getItem('sage_user');
+  if (user) {
+    window.location.href = 'app.html';
+  } else {
+    window.location.href = 'signup.html';
+  }
+}
+// If already logged in, show go to app button
+window.addEventListener('DOMContentLoaded', () => {
+  const user = localStorage.getItem('sage_user');
+  if (user) {
+    const nav = document.querySelector('.nav-actions');
+    nav.innerHTML = `<span style="color:var(--sage);font-size:14px;">Welcome back!</span><a href="app.html" class="btn-primary">Open SAGE →</a>`;
+  }
+});
+</script>
+</body>
+</html>
