@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>SAGE — Apna Raasta, Apni Zindagi</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1a7a4a;--gl:#22a05a;--gp:#e8f5ee;--gp2:#d1ead9;--or:#c45c1a;--bg:#fff;--bg2:#f7faf8;--tx:#0d1f14;--tx2:#3d5c47;--tx3:#7a9e85;--bd:#d4e8da;--fd:'Instrument Serif',serif;--fb:'Plus Jakarta Sans',sans-serif;--fu:'Noto Nastaliq Urdu',serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--tx);overflow-x:hidden}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd);height:62px}
+.nav-in{max-width:1100px;margin:0 auto;padding:0 20px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer}
+.logo-svg{width:34px;height:34px;flex-shrink:0}
+.logo-t{display:flex;flex-direction:column;line-height:1.1}
+.logo-n{font-family:var(--fd);font-size:19px;color:var(--tx)}
+.logo-s{font-size:9px;color:var(--tx3);font-family:var(--fu)}
+.nav-r{display:flex;align-items:center;gap:8px}
+.nb{padding:6px 16px;border:1.5px solid var(--bd);border-radius:30px;color:var(--tx2);font-size:13px;font-weight:500;background:none;cursor:pointer;font-family:var(--fb);transition:all .2s}
+.nb:hover{border-color:var(--g);color:var(--g)}
+.ng{padding:6px 18px;background:var(--g);border:none;border-radius:30px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--fb);transition:all .2s}
+.ng:hover{background:var(--gl);transform:translateY(-1px)}
+/* PAGES */
+.pg{display:none}.pg.on{display:block}
+/* LANDING */
+.hero{max-width:1100px;margin:0 auto;padding:90px 20px 60px;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;min-height:100vh}
+.badge{display:inline-flex;align-items:center;background:var(--gp);border:1px solid var(--gp2);border-radius:30px;padding:5px 14px;font-size:11px;color:var(--g);font-weight:600;margin-bottom:20px}
+.h1{font-family:var(--fd);font-size:clamp(32px,5vw,54px);color:var(--tx);line-height:1.15;margin-bottom:8px}
+.h1 em{color:var(--g);font-style:italic}
+.h1-ur{font-family:var(--fu);font-size:clamp(18px,3vw,30px);color:var(--tx2);direction:rtl;text-align:right;line-height:1.8;margin-bottom:18px;display:block}
+.hdesc{font-size:16px;color:var(--tx2);line-height:1.8;margin-bottom:28px}
+.hbtns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px}
+.gbtn{padding:13px 28px;background:var(--g);border:none;border-radius:50px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--fb);transition:all .25s;box-shadow:0 6px 20px rgba(26,122,74,.25)}
+.gbtn:hover{background:var(--gl);transform:translateY(-2px)}
+.obtn{padding:13px 24px;border:1.5px solid var(--bd);border-radius:50px;color:var(--tx2);font-size:14px;font-weight:500;cursor:pointer;font-family:var(--fb);background:none;transition:all .2s}
+.obtn:hover{border-color:var(--g);color:var(--g)}
+.hstats{display:flex;gap:24px}
+.hs{text-align:left}
+.hs-n{display:block;font-family:var(--fd);font-size:26px;color:var(--tx);font-weight:700}
+.hs-l{font-size:11px;color:var(--tx3)}
+.hs-div{width:1px;height:32px;background:var(--bd)}
+/* HERO RIGHT */
+.hr{position:relative}
+.fc{background:#fff;border:1.5px solid var(--bd);border-radius:14px;padding:14px 18px;box-shadow:0 8px 32px rgba(26,122,74,.1);position:absolute;z-index:3}
+.fc1{top:-18px;right:-12px;min-width:150px}
+.fc2{bottom:-18px;left:-12px;min-width:170px}
+.fc-l{font-size:10px;color:var(--tx3);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.fc-v{font-size:20px;font-weight:800;color:var(--tx)}
+.fc-q{font-size:12px;color:var(--tx);font-weight:600;margin-top:3px}
+.sdots{display:flex;gap:3px;margin-top:6px}
+.sd{width:7px;height:7px;border-radius:50%;background:var(--g)}
+.chat-card{background:#fff;border:1.5px solid var(--bd);border-radius:20px;padding:24px;box-shadow:0 8px 40px rgba(26,122,74,.12);position:relative;z-index:2}
+.cc-head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.cc-av{width:38px;height:38px;background:linear-gradient(135deg,var(--g),var(--gl));border-radius:50%;display:flex;align-items:center;justify-content:center}
+.cc-n{font-weight:700;font-size:14px;color:var(--tx)}
+.cc-s{font-size:11px;color:var(--g);display:flex;align-items:center;gap:3px}
+.dot{width:5px;height:5px;background:var(--g);border-radius:50%;animation:blink 2s infinite;display:inline-block}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.bs{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;border-top-left-radius:3px;padding:12px 16px;font-size:13px;color:var(--tx);line-height:1.7;margin-bottom:10px}
+.bu{background:var(--g);color:#fff;border-radius:14px;border-top-right-radius:3px;padding:10px 16px;font-size:13px;line-height:1.6;margin-left:auto;max-width:80%;text-align:right}
+/* FEATURES */
+.fsec{background:var(--bg2);padding:80px 20px}
+.fi{max-width:1100px;margin:0 auto}
+.ey{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--or);margin-bottom:10px}
+.sh2{font-family:var(--fd);font-size:clamp(24px,4vw,42px);color:var(--tx);margin-bottom:14px;line-height:1.2}
+.sh2 em{color:var(--g);font-style:italic}
+.ssub{font-size:15px;color:var(--tx2);margin-bottom:48px;max-width:500px;line-height:1.7}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fc-card{background:#fff;border:1.5px solid var(--bd);border-radius:14px;padding:24px 20px;transition:all .25s;cursor:pointer;position:relative;overflow:hidden}
+.fc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--g),var(--gl));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.fc-card:hover{border-color:var(--g);transform:translateY(-3px);box-shadow:0 8px 32px rgba(26,122,74,.1)}
+.fc-card:hover::before{transform:scaleX(1)}
+.fi-ico{font-size:30px;margin-bottom:12px;display:block}
+.fi-t{font-size:14px;font-weight:700;color:var(--tx);margin-bottom:6px;line-height:1.4}
+.fi-ur{font-family:var(--fu);font-size:11px;color:var(--tx3);display:block;direction:rtl}
+.fi-d{font-size:13px;color:var(--tx2);line-height:1.6;margin-top:8px}
+.fi-arr{position:absolute;bottom:16px;right:16px;color:var(--g);font-size:16px;opacity:0;transition:all .2s}
+.fc-card:hover .fi-arr{opacity:1;transform:translateX(3px)}
+/* DAILY */
+.dsec{padding:80px 20px}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px}
+.dc{background:var(--bg2);border:1.5px solid var(--bd);border-radius:14px;padding:20px;display:flex;gap:14px;align-items:flex-start;transition:all .2s}
+.dc:hover{border-color:var(--g)}
+.di{font-size:24px;flex-shrink:0}
+.dt{font-size:14px;font-weight:700;color:var(--tx);margin-bottom:2px}
+.dur{font-family:var(--fu);font-size:11px;color:var(--tx3);direction:rtl;display:block;margin-bottom:5px}
+.dd{font-size:12px;color:var(--tx2);line-height:1.6}
+/* QUOTE */
+.qbar{background:var(--g);padding:60px 20px;text-align:center;color:#fff}
+.qu{font-family:var(--fu);font-size:clamp(14px,2.5vw,24px);line-height:2;direction:rtl;opacity:.95;margin-bottom:10px}
+.qe{font-family:var(--fd);font-size:clamp(13px,2vw,20px);font-style:italic;opacity:.8;margin-bottom:10px}
+.qby{font-size:12px;opacity:.6;letter-spacing:.1em}
+/* FOUNDER */
+.foundersec{padding:80px 20px;max-width:820px;margin:0 auto}
+.founder-card{background:var(--bg2);border:1.5px solid var(--bd);border-radius:20px;padding:40px;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:start}
+.fimg{width:130px;height:158px;object-fit:cover;object-position:top center;border-radius:18px;border:3px solid var(--g);display:block}
+.fcheck{position:absolute;bottom:-8px;right:-8px;background:var(--g);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:12px;border:2px solid #fff}
+.fwrap{position:relative;width:130px;flex-shrink:0}
+.fbadge{display:inline-flex;background:var(--gp);border:1px solid var(--gp2);border-radius:20px;padding:3px 12px;font-size:11px;color:var(--g);font-weight:600;margin-bottom:10px}
+.fname{font-family:var(--fd);font-size:28px;color:var(--tx);margin-bottom:3px}
+.floc{font-size:12px;color:var(--g);font-weight:600;margin-bottom:14px}
+.fbio{font-size:14px;color:var(--tx2);line-height:1.85;margin-bottom:10px}
+.fbio strong{color:var(--tx)}
+.fbio em{color:var(--g)}
+.fbio-ur{font-family:var(--fu);font-size:13px;color:var(--tx3);line-height:2;direction:rtl;border-top:1px solid var(--bd);padding-top:10px}
+/* CTA */
+.ctasec{background:var(--bg2);padding:80px 20px;text-align:center}
+.ctasec h2{font-family:var(--fd);font-size:clamp(24px,4vw,44px);color:var(--tx);margin-bottom:8px}
+.ctasec h2 em{color:var(--g);font-style:italic}
+.cta-ur{font-family:var(--fu);font-size:16px;color:var(--tx3);direction:rtl;display:block;margin-bottom:10px}
+.cta-sub{font-size:15px;color:var(--tx2);margin-bottom:28px}
+footer{padding:32px 20px;border-top:1px solid var(--bd);text-align:center}
+.ft-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px}
+.ft-n{font-family:var(--fd);font-size:17px;color:var(--tx)}
+footer p{font-size:12px;color:var(--tx3);margin-bottom:3px}
+/* AUTH */
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:70px 20px 20px;background:var(--bg2)}
+.auth-card{background:#fff;border:1.5px solid var(--bd);border-radius:20px;padding:40px 36px;width:100%;max-width:420px;box-shadow:0 2px 20px rgba(26,122,74,.08)}
+.auth-logo{display:flex;justify-content:center;margin-bottom:24px}
+.auth-h{font-family:var(--fd);font-size:24px;color:var(--tx);text-align:center;margin-bottom:3px}
+.auth-sub{font-size:13px;color:var(--tx2);text-align:center;margin-bottom:4px}
+.auth-ur{font-family:var(--fu);font-size:12px;color:var(--tx3);direction:rtl;text-align:center;display:block;margin-bottom:24px}
+.ferr{background:#fff0f0;border:1px solid #ffb3b3;color:#c0392b;border-radius:10px;padding:10px 14px;font-size:13px;margin-bottom:14px;display:none}
+.fok{background:var(--gp);border:1px solid var(--gp2);color:var(--g);border-radius:10px;padding:10px 14px;font-size:13px;margin-bottom:14px;display:none}
+.fl{display:block;font-size:12px;color:var(--tx2);margin-bottom:5px;font-weight:500}
+.fi{width:100%;padding:12px 14px;background:var(--bg2);border:1.5px solid var(--bd);border-radius:10px;color:var(--tx);font-size:14px;font-family:var(--fb);outline:none;transition:border-color .2s;margin-bottom:14px}
+.fi:focus{border-color:var(--g)}
+.fi::placeholder{color:var(--tx3)}
+.fbtn{width:100%;padding:13px;background:var(--g);border:none;border-radius:10px;color:#fff;font-size:15px;font-weight:700;font-family:var(--fb);cursor:pointer;transition:all .2s;margin-top:2px}
+.fbtn:hover{background:var(--gl);transform:translateY(-1px)}
+.aswitch{text-align:center;margin-top:18px;font-size:13px;color:var(--tx2)}
+.aswitch a{color:var(--g);text-decoration:none;font-weight:600}
+/* APP */
+.app-wrap{display:grid;grid-template-columns:268px 1fr;height:100vh;padding-top:62px}
+.sb{background:var(--bg2);border-right:1px solid var(--bd);display:flex;flex-direction:column;overflow:hidden}
+.sb-head{padding:18px 16px;border-bottom:1px solid var(--bd)}
+.sb-gr{font-size:11px;color:var(--tx3);margin-bottom:2px}
+.sb-nm{font-family:var(--fd);font-size:19px;color:var(--tx)}
+.sb-s{padding:12px 16px;border-bottom:1px solid var(--bd)}
+.sb-l{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tx3);margin-bottom:8px}
+.mood-row{display:flex;gap:5px}
+.mb{flex:1;background:#fff;border:1.5px solid var(--bd);border-radius:9px;padding:6px 2px;font-size:16px;cursor:pointer;transition:all .2s;text-align:center}
+.mb:hover,.mb.on{border-color:var(--g);background:var(--gp);transform:scale(1.08)}
+.ml{display:block;font-size:7px;color:var(--tx3);margin-top:1px;font-family:var(--fu)}
+.wbox{background:linear-gradient(135deg,var(--gp),#fff);border-radius:10px;padding:10px 12px}
+.wq{font-family:var(--fu);font-size:11px;color:var(--tx2);line-height:1.7;direction:rtl}
+.sb-topics{padding:12px 16px;flex:1;overflow-y:auto}
+.tb{display:flex;align-items:center;gap:7px;width:100%;background:none;border:1px solid transparent;border-radius:9px;padding:8px 10px;color:var(--tx2);font-size:12px;font-family:var(--fb);cursor:pointer;transition:all .2s;text-align:left;margin-bottom:2px}
+.tb:hover{background:#fff;border-color:var(--bd);color:var(--tx)}
+.sb-goals{padding:12px 16px;border-top:1px solid var(--bd)}
+.gh{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.ge{background:none;border:none;color:var(--g);font-size:11px;cursor:pointer;font-family:var(--fb);font-weight:600}
+.gr{display:flex;align-items:center;gap:5px;margin-bottom:5px}
+.gd{width:4px;height:4px;background:var(--g);border-radius:50%;flex-shrink:0}
+.gt{font-size:11px;color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-bot{padding:12px 16px;border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center}
+.stbadge{font-size:11px;color:var(--tx3)}
+.stn{color:var(--g);font-weight:700}
+.lob{background:none;border:1px solid var(--bd);border-radius:20px;padding:4px 12px;color:var(--tx3);font-size:11px;font-family:var(--fb);cursor:pointer;transition:all .2s}
+.lob:hover{border-color:#e74c3c;color:#e74c3c}
+/* CHAT */
+.ca{display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+.ct{padding:12px 24px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;background:#fff}
+.ctl{display:flex;align-items:center;gap:10px}
+.cav{width:40px;height:40px;background:linear-gradient(135deg,var(--g),var(--gl));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(26,122,74,.2)}
+.ctn{font-size:14px;font-weight:700;color:var(--tx)}
+.cts{font-size:11px;color:var(--g);display:flex;align-items:center;gap:3px}
+.vt{display:flex;align-items:center;gap:5px;background:var(--bg2);border:1.5px solid var(--bd);border-radius:20px;padding:6px 14px;cursor:pointer;font-size:12px;color:var(--tx2);font-family:var(--fb);transition:all .2s}
+.vt:hover{border-color:var(--g)}
+.vt.on{border-color:var(--g);color:var(--g);background:var(--gp)}
+.lsw{display:flex;gap:2px;background:var(--bg2);border:1px solid var(--bd);border-radius:20px;padding:2px}
+.lb{background:none;border:none;color:var(--tx2);font-size:11px;font-family:var(--fb);padding:3px 8px;border-radius:16px;cursor:pointer;transition:all .2s}
+.lb.on{background:var(--g);color:#fff;font-weight:700}
+.dc-bar{background:linear-gradient(135deg,var(--gp),#fff);border:1.5px solid var(--gp2);border-radius:12px;padding:12px 16px;margin:10px 24px 0}
+.dc-l{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--g);margin-bottom:3px}
+.dc-t{font-size:13px;color:var(--tx);font-weight:600}
+.dc-u{font-family:var(--fu);font-size:11px;color:var(--tx3);direction:rtl;display:block;margin-top:2px}
+.msgs{flex:1;overflow-y:auto;padding:24px 32px;display:flex;flex-direction:column;gap:18px}
+.msgs::-webkit-scrollbar{width:3px}
+.msgs::-webkit-scrollbar-thumb{background:var(--bd);border-radius:3px}
+.msg{display:flex;gap:10px;align-items:flex-start;animation:fup .3s ease;max-width:700px}
+@keyframes fup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.msg.u{flex-direction:row-reverse;align-self:flex-end}
+.mav{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+.mav.s{background:linear-gradient(135deg,var(--g),var(--gl));color:#fff;font-family:var(--fd);font-size:15px;box-shadow:0 0 8px rgba(26,122,74,.2)}
+.mav.u{background:var(--bg2);color:var(--tx2);border:1px solid var(--bd)}
+.mb2{padding:13px 17px;border-radius:17px;font-size:14px;line-height:1.75;white-space:pre-wrap;max-width:560px}
+.msg.s .mb2{background:#fff;color:var(--tx);border-top-left-radius:3px;border:1.5px solid var(--bd)}
+.msg.u .mb2{background:var(--g);color:#fff;border-top-right-radius:3px;font-weight:500}
+.tbub{background:#fff;border:1.5px solid var(--bd);border-radius:17px;border-top-left-radius:3px;padding:14px 18px;display:flex;gap:5px;align-items:center}
+.tbub span{width:6px;height:6px;background:var(--tx3);border-radius:50%;animation:bounce 1.2s infinite}
+.tbub span:nth-child(2){animation-delay:.2s}.tbub span:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+.qrs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.qr{background:none;border:1.5px solid var(--gp2);color:var(--g);border-radius:20px;padding:6px 14px;font-size:12px;font-family:var(--fb);cursor:pointer;transition:all .2s}
+.qr:hover{background:var(--gp)}
+.vbar{display:none;align-items:center;justify-content:center;gap:8px;padding:12px;background:var(--gp);border-top:1px solid var(--gp2);color:var(--g);font-size:13px}
+.vbar.show{display:flex}
+.vwaves{display:flex;gap:3px;align-items:center}
+.vw{width:3px;background:var(--g);border-radius:3px;animation:wave .8s ease-in-out infinite}
+.vw:nth-child(1){height:8px}.vw:nth-child(2){height:18px;animation-delay:.1s}.vw:nth-child(3){height:12px;animation-delay:.2s}.vw:nth-child(4){height:22px;animation-delay:.3s}.vw:nth-child(5){height:10px;animation-delay:.4s}
+@keyframes wave{0%,100%{transform:scaleY(.6)}50%{transform:scaleY(1)}}
+.vstop{background:none;border:1px solid #e74c3c;color:#e74c3c;border-radius:20px;padding:3px 12px;cursor:pointer;font-family:var(--fb);font-size:11px}
+.inp-area{padding:12px 32px 16px;border-top:1px solid var(--bd);background:#fff}
+.inp-row{display:flex;gap:8px;align-items:flex-end}
+.inp-box{flex:1;display:flex;align-items:flex-end;gap:7px;background:var(--bg2);border:1.5px solid var(--bd);border-radius:22px;padding:9px 12px 9px 16px;transition:border-color .2s}
+.inp-box:focus-within{border-color:var(--g)}
+.inp-box textarea{flex:1;background:none;border:none;outline:none;color:var(--tx);font-size:14px;font-family:var(--fb);resize:none;line-height:1.6;max-height:90px}
+.inp-box textarea::placeholder{color:var(--tx3)}
+.mic{width:34px;height:34px;background:#fff;border:1.5px solid var(--bd);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .2s;flex-shrink:0}
+.mic:hover{border-color:var(--g);background:var(--gp)}
+.mic.on{background:rgba(220,50,50,.1);border-color:#e74c3c;animation:pm 1s infinite}
+@keyframes pm{0%,100%{box-shadow:0 0 0 0 rgba(220,50,50,.3)}50%{box-shadow:0 0 0 7px rgba(220,50,50,0)}}
+.sndbtn{width:44px;height:44px;background:var(--g);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;box-shadow:0 4px 12px rgba(26,122,74,.25)}
+.sndbtn:hover{background:var(--gl);transform:scale(1.06)}
+.sndbtn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.disc{font-size:10px;color:var(--tx3);text-align:center;margin-top:7px}
+.wlcs{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;text-align:center}
+.wlc-av{width:66px;height:66px;background:linear-gradient(135deg,var(--g),var(--gl));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 0 24px rgba(26,122,74,.2)}
+.wlc-h{font-family:var(--fd);font-size:24px;color:var(--tx);margin-bottom:5px}
+.wlc-sub{font-size:14px;color:var(--tx2);margin-bottom:24px;max-width:360px;line-height:1.7}
+.wlc-chips{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
+.wchip{background:var(--bg2);border:1.5px solid var(--bd);color:var(--tx2);border-radius:22px;padding:8px 18px;font-size:13px;font-family:var(--fb);cursor:pointer;transition:all .2s}
+.wchip:hover{background:var(--gp);color:var(--g);border-color:var(--gp2)}
+/* JOURNAL MODAL */
+.jov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;align-items:center;justify-content:center}
+.jov.open{display:flex}
+.jmod{background:#fff;border-radius:20px;padding:32px;width:100%;max-width:480px;max-height:80vh;overflow-y:auto}
+.jh{font-family:var(--fd);font-size:20px;color:var(--tx);margin-bottom:5px}
+.jc{float:right;background:none;border:none;color:var(--tx3);font-size:18px;cursor:pointer}
+.jta{width:100%;min-height:120px;padding:12px 14px;background:var(--bg2);border:1.5px solid var(--bd);border-radius:12px;color:var(--tx);font-size:14px;font-family:var(--fb);outline:none;resize:vertical;margin-bottom:12px}
+.jta:focus{border-color:var(--g)}
+.je{background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:12px;margin-bottom:8px}
+.je-d{font-size:10px;color:var(--tx3);margin-bottom:5px}
+.je-t{font-size:13px;color:var(--tx);line-height:1.7}
+/* GOALS MODAL */
+.gov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;align-items:center;justify-content:center}
+.gov.open{display:flex}
+.gmod{background:#fff;border-radius:20px;padding:32px;width:100%;max-width:420px}
+.gmh{font-family:var(--fd);font-size:20px;color:var(--tx);margin-bottom:5px}
+.gmc{float:right;background:none;border:none;color:var(--tx3);font-size:18px;cursor:pointer}
+@media(max-width:768px){.hero{grid-template-columns:1fr;padding-top:80px;min-height:auto}.hr{display:none}.fgrid{grid-template-columns:1fr}.dgrid{grid-template-columns:1fr}.founder-card{grid-template-columns:1fr;gap:20px;padding:24px}.app-wrap{grid-template-columns:1fr}.sb{display:none}.msgs{padding:12px}.inp-area{padding:8px 12px 12px}.ct{padding:8px 12px}.dc-bar{margin:8px 12px 0}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-in">
+    <div class="logo" onclick="showLanding()">
+      <svg class="logo-svg" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" fill="#e8f5ee"/><circle cx="20" cy="20" r="11" stroke="#1a7a4a" stroke-width="1.5" fill="none"/><path d="M14 20 C14 16 17 14 20 16 C23 18 26 16 26 20 C26 24 23 26 20 24 C17 22 14 24 14 20Z" stroke="#1a7a4a" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M20 9 L21.4 13.5 L20 12.5 L18.6 13.5 Z" fill="#1a7a4a"/><circle cx="20" cy="20" r="1.8" fill="#1a7a4a"/></svg>
+      <div class="logo-t"><span class="logo-n">SAGE</span><span class="logo-s">اپنا راستہ، اپنی زندگی</span></div>
+    </div>
+    <div class="nav-r" id="nav-r">
+      <button class="nb" onclick="showLogin()">Log in</button>
+      <button class="ng" onclick="showSignup()">Start Free →</button>
+    </div>
+  </div>
+</nav>
+
+<!-- LANDING PAGE -->
+<div class="pg on" id="pg-land">
+<section class="hero">
+  <div>
+    <div class="badge">🌟 Pakistan ka pehla Urdu + Pashto AI Life Coach</div>
+    <h1 class="h1">Zindagi mein <em>raasta</em><br/>dhundhna hai?</h1>
+    <span class="h1-ur">آپ کا سمجھدار بڑا بھائی — SAGE</span>
+    <p class="hdesc">Not a robot. Not just a chatbot. A wise companion who listens, understands, and walks with you — in English, Urdu & Pashto. Bilkul free.</p>
+    <div class="hbtns">
+      <button class="gbtn" onclick="showSignup()">Free mein shuru karein →</button>
+      <button class="obtn" onclick="showLogin()">Already have account</button>
+    </div>
+    <div class="hstats">
+      <div class="hs"><span class="hs-n">3</span><span class="hs-l">Zabanen</span></div>
+      <div class="hs-div"></div>
+      <div class="hs"><span class="hs-n">24/7</span><span class="hs-l">Hamesha Mojood</span></div>
+      <div class="hs-div"></div>
+      <div class="hs"><span class="hs-n">∞</span><span class="hs-l">Bilkul Free</span></div>
+    </div>
+  </div>
+  <div class="hr">
+    <div class="fc fc1"><div class="fc-l">🔥 Streak</div><div class="fc-v">7 Days</div><div class="sdots"><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div></div>
+    <div class="chat-card">
+      <div class="cc-head"><div class="cc-av"><svg viewBox="0 0 24 24" fill="none" width="18" height="18"><circle cx="12" cy="8" r="4" fill="white"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg></div><div><div class="cc-n">SAGE</div><div class="cc-s"><span class="dot"></span>Hamesha yahan hoon</div></div></div>
+      <div class="bs">Assalam o Alaikum! Main SAGE hoon — tera samajhdar bada bhai. Koi faisla nahi, koi lecture nahi. Bas sachi baat.<br/><br/>Bata — aaj kya chal raha hai? 🌱</div>
+      <div class="bu">Mujhe apni life mein direction chahiye...</div>
+    </div>
+    <div class="fc fc2"><div class="fc-l">✨ Aaj ka Sabaq</div><div class="fc-q">"Har qadam aage hai"</div></div>
+  </div>
+</section>
+
+<section class="fsec">
+  <div class="fi">
+    <div class="ey">6 Khasiyat</div>
+    <h2 class="sh2">Har wo cheez jo ek <em>wise bhai</em> karta hai<br/>— without the awkwardness.</h2>
+    <p class="ssub">SAGE tumhare saath hai — zindagi ke har mod par.</p>
+    <div class="fgrid">
+      <div class="fc-card" onclick="showSignup()"><span class="fi-ico">🎯</span><div class="fi-t">Life Coaching<span class="fi-ur">زندگی کی رہنمائی</span></div><p class="fi-d">Apna maqsad dhundho, goals set karo.</p><span class="fi-arr">→</span></div>
+      <div class="fc-card" onclick="showSignup()"><span class="fi-ico">🗣️</span><div class="fi-t">Voice Chat<span class="fi-ur">آواز سے بات کریں</span></div><p class="fi-d">Type nahi — bolne se bhi kaam chalta hai.</p><span class="fi-arr">→</span></div>
+      <div class="fc-card" onclick="showSignup()"><span class="fi-ico">🌅</span><div class="fi-t">Daily Check-in<span class="fi-ur">روزانہ موڈ چیک</span></div><p class="fi-d">Har subah SAGE ka personal paigham.</p><span class="fi-arr">→</span></div>
+      <div class="fc-card" onclick="showSignup()"><span class="fi-ico">🔥</span><div class="fi-t">Streak Tracker<span class="fi-ur">مسلسل دن کا حساب</span></div><p class="fi-d">Consistency ki aadat banao SAGE ke saath.</p><span class="fi-arr">→</span></div>
+      <div class="fc-card" onclick="showSignup()"><span class="fi-ico">📔</span><div class="fi-t">Personal Journal<span class="fi-ur">ذاتی ڈائری</span></div><p class="fi-d">Apne khayalat likho. SAGE sunta hai.</p><span class="fi-arr">→</span></div>
+      <div class="fc-card" onclick="showSignup()"><span class="fi-ico">💼</span><div class="fi-t">Career Guide<span class="fi-ur">کیریئر رہنمائی</span></div><p class="fi-d">Future ke baare mein confused? SAGE help karega.</p><span class="fi-arr">→</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="dsec">
+  <div class="fi">
+    <div class="ey">Daily Features</div>
+    <h2 class="sh2">Har din <em>naya safar</em> — SAGE ke saath.</h2>
+    <div class="dgrid">
+      <div class="dc"><span class="di">🌅</span><div><div class="dt">Morning Message</div><span class="dur">صبح کا پیغام</span><p class="dd">Jab bhi SAGE kholo — personal paigham milta hai.</p></div></div>
+      <div class="dc"><span class="di">😊</span><div><div class="dt">Mood Check-in</div><span class="dur">آج کیسا محسوس ہو رہا ہے؟</span><p class="dd">Mood samajhta hai aur usi hisaab se baat karta hai.</p></div></div>
+      <div class="dc"><span class="di">💡</span><div><div class="dt">Aaj ka Kaam</div><span class="dur">آج کا کام</span><p class="dd">Ek chota daily challenge — life better banane ka.</p></div></div>
+      <div class="dc"><span class="di">📖</span><div><div class="dt">Daily Wisdom</div><span class="dur">آج کی سوچ</span><p class="dd">Urdu + English mein ek powerful quote — har din naya.</p></div></div>
+      <div class="dc"><span class="di">🔥</span><div><div class="dt">Streak Counter</div><span class="dur">مسلسل دنوں کا حساب</span><p class="dd">Consistency track karo aur badhte jao.</p></div></div>
+      <div class="dc"><span class="di">🌙</span><div><div class="dt">Night Reflection</div><span class="dur">رات کا احتساب</span><p class="dd">Raat ko puchta hai — aaj kya seekha?</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="qbar">
+  <p class="qu">"ہر انسان میں بے پناہ صلاحیت ہے — بس ایک سمجھدار ساتھی کی ضرورت ہے۔"</p>
+  <p class="qe">"Every human has unlimited potential — they just need one wise companion."</p>
+  <span class="qby">— SAGE</span>
+</div>
+
+<section class="foundersec">
+  <div class="ey">Builder ke Baare Mein</div>
+  <h2 class="sh2" style="margin-bottom:36px">KPK ke ek <em>nojawan</em> ka khwab.</h2>
+  <div class="founder-card">
+    <div class="fwrap">
+      <img src="data:image/jpeg;base64,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" alt="Jamshaid Founder" class="fimg"/>
+      <div class="fcheck">✓</div>
+    </div>
+    <div>
+      <div class="fbadge">👨‍💻 Founder & CEO</div>
+      <div class="fname">Jamshaid</div>
+      <div class="floc">📍 KPK, Pakistan 🇵🇰</div>
+      <p class="fbio">19 saal ka ek medical student jisne ek bada khwab dekha. <strong>Islamia College Peshawar</strong> se FSc Pre-Medical complete karne ke baad, Jamshaid ne SAGE banaya ek simple soch ke saath: <em>"Duniya ke har insaan ko ek samajhdar saathi ka haq hai."</em></p>
+      <p class="fbio-ur">پشاور کے ایک نوجوان کا خواب — کہ دنیا کا ہر انسان، چاہے وہ کہیں بھی ہو، ایک سمجھدار ساتھی کا حقدار ہے۔</p>
+    </div>
+  </div>
+</section>
+
+<section class="ctasec">
+  <h2>Aaj hi shuru karo — <em>bilkul free.</em></h2>
+  <span class="cta-ur">آج ہی شروع کریں — بالکل مفت</span>
+  <p class="cta-sub">No credit card. No hidden fees. Hamesha free.</p>
+  <button class="gbtn" onclick="showSignup()">SAGE se baat karo → مفت شروع کریں</button>
+</section>
+
+<footer>
+  <div class="ft-row"><svg width="24" height="24" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" fill="#e8f5ee"/><circle cx="20" cy="20" r="11" stroke="#1a7a4a" stroke-width="1.5" fill="none"/><path d="M14 20 C14 16 17 14 20 16 C23 18 26 16 26 20 C26 24 23 26 20 24 C17 22 14 24 14 20Z" stroke="#1a7a4a" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M20 9 L21.4 13.5 L20 12.5 L18.6 13.5 Z" fill="#1a7a4a"/><circle cx="20" cy="20" r="1.8" fill="#1a7a4a"/></svg><span class="ft-n">SAGE</span></div>
+  <p>Built with ❤️ in Pakistan 🇵🇰 by Jamshaid — KPK</p>
+  <p>© 2026 SAGE — اپنا راستہ، اپنی زندگی</p>
+</footer>
+</div>
+
+<!-- SIGNUP PAGE -->
+<div class="pg" id="pg-signup">
+<div class="auth-wrap">
+<div class="auth-card">
+  <div class="auth-logo"><svg width="44" height="44" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" fill="#e8f5ee"/><circle cx="20" cy="20" r="11" stroke="#1a7a4a" stroke-width="1.5" fill="none"/><path d="M14 20 C14 16 17 14 20 16 C23 18 26 16 26 20 C26 24 23 26 20 24 C17 22 14 24 14 20Z" stroke="#1a7a4a" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M20 9 L21.4 13.5 L20 12.5 L18.6 13.5 Z" fill="#1a7a4a"/><circle cx="20" cy="20" r="1.8" fill="#1a7a4a"/></svg></div>
+  <h2 class="auth-h">Join SAGE</h2>
+  <p class="auth-sub">Apna safar shuru karein</p>
+  <span class="auth-ur">اپنا سفر شروع کریں</span>
+  <div class="ferr" id="su-err"></div>
+  <div class="fok" id="su-ok"></div>
+  <label class="fl">Your Name / آپ کا نام</label>
+  <input type="text" class="fi" id="su-name" placeholder="e.g. Ahmad, Sara..."/>
+  <label class="fl">Email / ای میل</label>
+  <input type="email" class="fi" id="su-email" placeholder="your@email.com"/>
+  <label class="fl">Password / پاسورڈ</label>
+  <input type="password" class="fi" id="su-pass" placeholder="At least 6 characters"/>
+  <label class="fl">Confirm Password</label>
+  <input type="password" class="fi" id="su-cpass" placeholder="Repeat your password"/>
+  <label class="fl">Language / زبان</label>
+  <select class="fi" id="su-lang" style="cursor:pointer"><option value="en">English</option><option value="ur">اردو — Urdu</option><option value="ps">پښتو — Pashto</option></select>
+  <button class="fbtn" onclick="doSignup()">Create Account ✨</button>
+  <div class="aswitch">Already have account? <a href="#" onclick="showLogin()">Login here</a></div>
+</div>
+</div>
+</div>
+
+<!-- LOGIN PAGE -->
+<div class="pg" id="pg-login">
+<div class="auth-wrap">
+<div class="auth-card">
+  <div class="auth-logo"><svg width="44" height="44" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" fill="#e8f5ee"/><circle cx="20" cy="20" r="11" stroke="#1a7a4a" stroke-width="1.5" fill="none"/><path d="M14 20 C14 16 17 14 20 16 C23 18 26 16 26 20 C26 24 23 26 20 24 C17 22 14 24 14 20Z" stroke="#1a7a4a" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M20 9 L21.4 13.5 L20 12.5 L18.6 13.5 Z" fill="#1a7a4a"/><circle cx="20" cy="20" r="1.8" fill="#1a7a4a"/></svg></div>
+  <h2 class="auth-h">Welcome Back</h2>
+  <p class="auth-sub">Khush Aamdeed!</p>
+  <span class="auth-ur">SAGE aapka intezaar kar raha tha 🌱</span>
+  <div class="ferr" id="li-err"></div>
+  <label class="fl">Email / ای میل</label>
+  <input type="email" class="fi" id="li-email" placeholder="your@email.com"/>
+  <label class="fl">Password / پاسورڈ</label>
+  <input type="password" class="fi" id="li-pass" placeholder="Your password"/>
+  <button class="fbtn" onclick="doLogin()">Login →</button>
+  <div class="aswitch">No account? <a href="#" onclick="showSignup()">Sign up free</a></div>
+</div>
+</div>
+</div>
+
+<!-- APP PAGE -->
+<div class="pg" id="pg-app">
+<div class="app-wrap">
+  <div class="sb">
+    <div class="sb-head"><div class="sb-gr" id="sb-gr">Good day,</div><div class="sb-nm" id="sb-nm">Friend</div></div>
+    <div class="sb-s">
+      <div class="sb-l">Aaj kaisa feel? / آج کیسا محسوس ہو رہا ہے؟</div>
+      <div class="mood-row">
+        <button class="mb" onclick="setMood('😊','خوش')">😊<span class="ml">خوش</span></button>
+        <button class="mb" onclick="setMood('😔','اداس')">😔<span class="ml">اداس</span></button>
+        <button class="mb" onclick="setMood('😤','پریشان')">😤<span class="ml">پریشان</span></button>
+        <button class="mb" onclick="setMood('🤔','سوچ')">🤔<span class="ml">سوچ</span></button>
+        <button class="mb" onclick="setMood('🔥','جوش')">🔥<span class="ml">جوش</span></button>
+      </div>
+    </div>
+    <div class="sb-s">
+      <div class="sb-l">✨ Aaj ki Soch</div>
+      <div class="wbox"><div class="wq" id="wq">...</div></div>
+    </div>
+    <div class="sb-topics">
+      <div class="sb-l">Baat karein / بات کریں</div>
+      <button class="tb" onclick="sq('I want to find my purpose in life')">🎯 Purpose / مقصد</button>
+      <button class="tb" onclick="sq('I need help with my career and future')">💼 Career / کیریئر</button>
+      <button class="tb" onclick="sq('I have lost my motivation lately')">⚡ Motivation / حوصلہ</button>
+      <button class="tb" onclick="sq('I have been feeling very lonely')">💙 Loneliness / تنہائی</button>
+      <button class="tb" onclick="sq('I am worried about my future')">🌟 Future / مستقبل</button>
+      <button class="tb" onclick="sq('I feel completely stuck in life')">🚧 Feeling Stuck</button>
+      <button class="tb" onclick="sq('I need help with my studies')">📚 Studies / تعلیم</button>
+      <button class="tb" onclick="openJournal()">📔 Journal / ڈائری</button>
+      <button class="tb" onclick="newChat()">✨ New Chat</button>
+    </div>
+    <div class="sb-goals">
+      <div class="gh"><div class="sb-l" style="margin:0">🎯 Goals</div><button class="ge" onclick="openGoals()">+ Edit</button></div>
+      <div id="goals-list"><div style="font-size:11px;color:var(--tx3);font-style:italic">No goals yet. Add some!</div></div>
+    </div>
+    <div class="sb-bot">
+      <div class="stbadge">🔥 <span class="stn" id="streak">1</span> day streak</div>
+      <button class="lob" onclick="doLogout()">Logout</button>
+    </div>
+  </div>
+  <div class="ca">
+    <div class="ct">
+      <div class="ctl">
+        <div class="cav"><svg viewBox="0 0 24 24" fill="none" width="18" height="18"><circle cx="12" cy="8" r="4" fill="white"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div><div class="ctn">SAGE</div><div class="cts"><span class="dot"></span><span id="hstat">Hamesha yahan hoon</span></div></div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div class="lsw">
+          <button class="lb on" onclick="setLang('en')">EN</button>
+          <button class="lb" onclick="setLang('ur')">اردو</button>
+          <button class="lb" onclick="setLang('ps')">پښتو</button>
+        </div>
+        <button class="vt" id="vt-btn" onclick="toggleVoice()">🔊 Voice</button>
+      </div>
+    </div>
+    <div class="dc-bar">
+      <div class="dc-l">💡 Aaj ka Kaam</div>
+      <div class="dc-t" id="dc-txt">Loading...</div>
+      <span class="dc-u" id="dc-ur">...</span>
+    </div>
+    <div class="vbar" id="vbar">
+      <div class="vwaves"><div class="vw"></div><div class="vw"></div><div class="vw"></div><div class="vw"></div><div class="vw"></div></div>
+      <span>🎙️ Sun raha hoon...</span>
+      <button class="vstop" onclick="stopListen()">Stop</button>
+    </div>
+    <div class="msgs" id="msgs"></div>
+    <div class="inp-area">
+      <div class="inp-row">
+        <div class="inp-box">
+          <textarea id="inp" rows="1" placeholder="Type ya bolo SAGE se..." onkeydown="hkey(event)" oninput="arz(this)"></textarea>
+          <button class="mic" id="mic" onclick="startListen()" title="Bolo">🎙️</button>
+        </div>
+        <button class="sndbtn" onclick="sendMsg()" id="sndbtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13" stroke="white" stroke-width="2.2" stroke-linecap="round"/><path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <p class="disc">SAGE is an AI companion, not a doctor. For serious issues, seek professional help.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- JOURNAL MODAL -->
+<div class="jov" id="jov">
+<div class="jmod">
+  <button class="jc" onclick="closeJournal()">✕</button>
+  <h3 class="jh">📔 Personal Journal / ذاتی ڈائری</h3>
+  <p style="font-size:13px;color:var(--tx2);margin-bottom:16px">Apne khayalat likho — SAGE sunta hai.</p>
+  <textarea class="jta" id="jta" placeholder="Aaj kya feel ho raha hai? Kya soch rahe ho?"></textarea>
+  <button class="fbtn" onclick="saveJournal()">Save Entry / محفوظ کریں</button>
+  <div class="je" id="jentries" style="margin-top:16px"></div>
+</div>
+</div>
+
+<!-- GOALS MODAL -->
+<div class="gov" id="gov">
+<div class="gmod">
+  <button class="gmc" onclick="closeGoals()">✕</button>
+  <h3 class="gmh">🎯 My Goals / میرے اہداف</h3>
+  <p style="font-size:13px;color:var(--tx2);margin-bottom:20px">3 tak goals add karo. SAGE inke baare mein puchega!</p>
+  <label class="fl">Goal 1</label><input type="text" class="fi" id="g1" placeholder="e.g. Become a doctor"/>
+  <label class="fl">Goal 2</label><input type="text" class="fi" id="g2" placeholder="e.g. Start a business"/>
+  <label class="fl">Goal 3</label><input type="text" class="fi" id="g3" placeholder="e.g. Help my family"/>
+  <button class="fbtn" onclick="saveGoals()">Save Goals</button>
+</div>
+</div>
+
+<script>
+// ===== STATE =====
+let user=null,history=[],isTyping=false,lang='en',voiceOn=false,recog=null;
+const synth=window.speechSynthesis;
+
+const wisdoms=[
+  {en:"Every journey begins with a single step.",ur:"ہر سفر ایک قدم سے شروع ہوتا ہے۔"},
+  {en:"Your struggles today are your strength tomorrow.",ur:"آج کی مشکلیں کل کی طاقت ہیں۔"},
+  {en:"Believe in yourself, even when no one else does.",ur:"اپنے آپ پر یقین رکھو، چاہے کوئی نہ رکھے۔"},
+  {en:"Small consistent steps beat massive inconsistent leaps.",ur:"چھوٹے مستقل قدم، بڑی بے ترتیب چھلانگوں سے بہتر ہیں۔"},
+  {en:"Your potential is limitless.",ur:"تمہاری صلاحیت لامحدود ہے۔"},
+  {en:"Hard times reveal true character.",ur:"مشکل وقت ہی اصل کردار ظاہر کرتا ہے۔"},
+  {en:"The best time to start is now.",ur:"شروع کرنے کا بہترین وقت ابھی ہے۔"}
+];
+
+const challenges=[
+  {en:"Write down 3 things you are grateful for today.",ur:"آج 3 چیزیں لکھو جن کے لیے شکرگزار ہو۔"},
+  {en:"Talk to one person you have been avoiding.",ur:"ایک شخص سے بات کرو جس سے گریز کر رہے تھے۔"},
+  {en:"Spend 10 minutes in silence, just thinking.",ur:"10 منٹ خاموشی میں بیٹھو، بس سوچو۔"},
+  {en:"Write one goal and one step to achieve it.",ur:"ایک ہدف اور اسے پانے کا ایک قدم لکھو۔"},
+  {en:"Do one thing today that scares you a little.",ur:"آج ایک ایسا کام کرو جو تھوڑا ڈراتا ہو۔"},
+  {en:"Read or listen to something inspiring for 15 mins.",ur:"15 منٹ کچھ الہام بخش پڑھو یا سنو۔"},
+  {en:"Tell someone you appreciate them today.",ur:"کسی کو آج بتاو کہ تم اس کی قدر کرتے ہو۔"}
+];
+
+// ===== PAGE NAVIGATION =====
+function showPage(id){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.getElementById('pg-'+id).classList.add('on');
+  window.scrollTo(0,0);
+}
+function showLanding(){
+  if(user){updateNav();showPage('app');initApp();}
+  else showPage('land');
+}
+function showSignup(){showPage('signup')}
+function showLogin(){showPage('login')}
+function updateNav(){
+  const nr=document.getElementById('nav-r');
+  if(user) nr.innerHTML='<span style="font-size:12px;color:var(--g);font-weight:600">Welcome, '+user.name+'!</span><button class="ng" onclick="showPage(\'app\')">Open SAGE →</button>';
+  else nr.innerHTML='<button class="nb" onclick="showLogin()">Log in</button><button class="ng" onclick="showSignup()">Start Free →</button>';
+}
+
+// ===== AUTH =====
+function doSignup(){
+  const name=v('su-name'),email=v('su-email'),pass=v('su-pass'),cpass=v('su-cpass'),l=v('su-lang');
+  clearMsg('su-err','su-ok');
+  if(!name)return se('su-err','Please enter your name');
+  if(!email||!email.includes('@'))return se('su-err','Please enter a valid email');
+  if(pass.length<6)return se('su-err','Password must be at least 6 characters');
+  if(pass!==cpass)return se('su-err','Passwords do not match');
+  const users=getUsers();
+  if(users.find(u=>u.email===email))return se('su-err','Email already registered');
+  const u={name,email,lang:l,password:btoa(pass),joinDate:new Date().toISOString(),goals:[],streakDays:1,lastVisit:new Date().toISOString(),journal:[]};
+  users.push(u);saveUsers(users);
+  localStorage.setItem('sage_user',JSON.stringify(u));user=u;
+  se('su-ok','Account created! Welcome to SAGE 🌱');
+  setTimeout(()=>{updateNav();showPage('app');initApp();},1200);
+}
+
+function doLogin(){
+  const email=v('li-email'),pass=v('li-pass');
+  clearMsg('li-err');
+  if(!email||!pass)return se('li-err','Please fill all fields');
+  const users=getUsers();
+  const u=users.find(u=>u.email===email&&u.password===btoa(pass));
+  if(!u)return se('li-err','Incorrect email or password');
+  const diff=Math.floor((new Date()-new Date(u.lastVisit))/(1000*60*60*24));
+  if(diff===1)u.streakDays=(u.streakDays||1)+1;
+  else if(diff>1)u.streakDays=1;
+  u.lastVisit=new Date().toISOString();
+  const idx=users.findIndex(x=>x.email===email);
+  users[idx]=u;saveUsers(users);
+  localStorage.setItem('sage_user',JSON.stringify(u));user=u;
+  updateNav();showPage('app');initApp();
+}
+
+function doLogout(){localStorage.removeItem('sage_user');user=null;history=[];updateNav();showPage('land');}
+
+// ===== APP INIT =====
+function initApp(){
+  if(!user)return;
+  lang=user.lang||'en';
+  const h=new Date().getHours();
+  const gs={en:h<12?'Good morning,':h<17?'Good afternoon,':'Good evening,',ur:h<12?'صبح بخیر،':h<17?'دوپہر بخیر،':'شام بخیر،',ps:h<12?'سهار مو پخیر،':'ماسپښین مو پخیر،'};
+  document.getElementById('sb-gr').textContent=gs[lang]||gs.en;
+  document.getElementById('sb-nm').textContent=user.name;
+  document.getElementById('streak').textContent=user.streakDays||1;
+  const w=wisdoms[new Date().getDay()%wisdoms.length];
+  document.getElementById('wq').textContent=lang==='en'?w.en:w.ur;
+  const c=challenges[new Date().getDay()%challenges.length];
+  document.getElementById('dc-txt').textContent=c.en;
+  document.getElementById('dc-ur').textContent=c.ur;
+  renderGoals();
+  showWelcome();
+  updateLangBtns();
+}
+
+// ===== WELCOME =====
+function showWelcome(){
+  const msgs=document.getElementById('msgs');
+  msgs.innerHTML='';
+  const chips={en:['Find my purpose','Career advice','I feel stuck','I need motivation','Family problems','Just talk to me'],ur:['مقصد ڈھونڈنا','کیریئر میں مدد','پھنسا ہوا محسوس','حوصلہ چاہیے','خاندانی مسائل','بس بات کرنی ہے'],ps:['هدف موندل','د کار لارښوونه','بند احساس','هڅونه','د کورنۍ ستونزې','یوازې خبرې']};
+  const titles={en:'What is on your mind?',ur:'آج کیا بات کریں؟',ps:'نن د خبرو لپاره چمتو یاست؟'};
+  const subs={en:'I am SAGE — your wise older brother. No judgment. No lectures. Just real talk.',ur:'میں SAGE ہوں — تمہارا سمجھدار بڑا بھائی۔ کوئی فیصلہ نہیں۔',ps:'زه SAGE یم — ستاسو پوه لوی ورور۔ هیڅ قضاوت نه۔'};
+  const ch=chips[lang]||chips.en;
+  const div=document.createElement('div');
+  div.className='wlcs';div.id='wlcs';
+  div.innerHTML='<div class="wlc-av"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><circle cx="12" cy="8" r="4" fill="white"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg></div><h2 class="wlc-h">Assalam o Alaikum, '+user.name+'! 👋</h2><p class="wlc-sub">'+(subs[lang]||subs.en)+'</p><div class="wlc-chips">'+ch.map(c=>'<button class="wchip" onclick="sq(\''+c+'\')">'+c+'</button>').join('')+'</div>';
+  msgs.appendChild(div);
+}
+
+// ===== MOOD =====
+function setMood(emoji,label){
+  document.querySelectorAll('.mb').forEach(b=>b.classList.remove('on'));
+  event.target.closest('.mb').classList.add('on');
+  const msgs={
+    '😊':'Great to hear you are feeling happy, '+user.name+'! 😊 Let us make the most of this energy today. What would you like to work on?',
+    '😔':user.name+', I see you are feeling sad. That is okay — I am here. Do you want to talk about what is going on? Sometimes just expressing it helps.',
+    '😤':'Feeling stressed is tough, '+user.name+'. Take a breath — I am here. What is weighing on you today?',
+    '🤔':'In thinking mode — I love that, '+user.name+'! The fact that you are reflecting is a sign of growth. What is on your mind?',
+    '🔥':'You are feeling motivated — yes! 🔥 Let us channel that energy, '+user.name+'. What do you want to tackle today?'
+  };
+  setTimeout(()=>{rmWelcome();addSage(msgs[emoji]||'How can I help you today, '+user.name+'?',[]);},300);
+}
+
+// ===== SEND =====
+function sq(t){document.getElementById('inp').value=t;sendMsg();}
+
+async function sendMsg(){
+  const inp=document.getElementById('inp');
+  const t=inp.value.trim();
+  if(!t||isTyping)return;
+  inp.value='';inp.style.height='auto';
+  rmWelcome();rmQR();
+  addUser(t);showTyping();isTyping=true;
+  document.getElementById('sndbtn').disabled=true;
+  history.push({role:'user',content:t});
+  try{
+    const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history.slice(-14).map(m=>({role:m.role==='assistant'?'model':'user',parts:[{text:m.content}]})),systemPrompt:getPrompt()})});
+    const d=await r.json();
+    hideTyping();
+    if(d.error)throw new Error(d.error);
+    addSage(d.reply,getQR(t));
+    history.push({role:'assistant',content:d.reply});
+    if(voiceOn)speak(d.reply);
+  }catch(e){
+    hideTyping();
+    addSage('Maafi, connection mein masla hai. Please dobara koshish karein. / معافی، کنکشن میں مسئلہ ہے۔',[]);
+    console.error(e);
+  }
+  isTyping=false;document.getElementById('sndbtn').disabled=false;
+}
+
+function getPrompt(){
+  return 'You are SAGE — a wise, warm AI life companion who speaks like a caring older brother.\n\nPERSONALITY:\n- Warm, honest, real — like a wise older brother who has been through struggles\n- Give REAL advice, not generic tips\n- Listen deeply, ask thoughtful questions\n- Never judgmental\n- Celebrate small wins, encourage during hard times\n- Be direct but loving\n\nLANGUAGE:\n- If user writes in Urdu, respond in Urdu\n- If user writes in Pashto, respond in Pashto\n- If user writes in English, respond in English\n- Current preference: '+lang+'\n\nUSER INFO:\n- Name: '+user.name+'\n- Goals: '+(user.goals&&user.goals.length?user.goals.join(', '):'Not set yet')+'\n\nRESPONSE: 2-4 paragraphs max. End with a thoughtful question. Use name occasionally.\n\nIMPORTANT: Not a doctor or therapist. For serious mental health crises, encourage professional help.';
+}
+
+function getQR(t){
+  const l=t.toLowerCase();
+  if(l.includes('purpose')||l.includes('مقصد'))return['Tell me more','What should I do?','I feel lost'];
+  if(l.includes('career')||l.includes('کیریئر'))return['What are my options?','How do I start?','Give me a plan'];
+  if(l.includes('motivat')||l.includes('حوصلہ'))return['Why do I feel this?','How to start again?','Give me steps'];
+  if(l.includes('lone')||l.includes('تنہا'))return['I need connection','What should I do?','Help me'];
+  return['Tell me more','What do you think?','How do I start?'];
+}
+
+// ===== MESSAGE RENDERING =====
+function addUser(t){
+  const msgs=document.getElementById('msgs');
+  const d=document.createElement('div');d.className='msg u';
+  const ini=(user.name||'U').charAt(0).toUpperCase();
+  d.innerHTML='<div class="mav u">'+ini+'</div><div class="mb2">'+esc(t)+'</div>';
+  msgs.appendChild(d);sb();
+}
+
+function addSage(t,qrs){
+  const msgs=document.getElementById('msgs');
+  const d=document.createElement('div');d.className='msg s';
+  const fm=esc(t).replace(/\n/g,'<br>');
+  let qh='';
+  if(qrs&&qrs.length) qh='<div class="qrs">'+qrs.map(r=>'<button class="qr" onclick="sq(\''+r+'\')">'+r+'</button>').join('')+'</div>';
+  d.innerHTML='<div class="mav s">S</div><div><div class="mb2">'+fm+'</div>'+qh+'</div>';
+  msgs.appendChild(d);sb();
+}
+
+function showTyping(){
+  const msgs=document.getElementById('msgs');
+  const d=document.createElement('div');d.className='msg s';d.id='typing';
+  d.innerHTML='<div class="mav s">S</div><div class="tbub"><span></span><span></span><span></span></div>';
+  msgs.appendChild(d);sb();
+}
+function hideTyping(){const t=document.getElementById('typing');if(t)t.remove();}
+function rmWelcome(){const w=document.getElementById('wlcs');if(w)w.remove();}
+function rmQR(){document.querySelectorAll('.qrs').forEach(e=>e.remove());}
+function sb(){const m=document.getElementById('msgs');m.scrollTop=m.scrollHeight;}
+function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function newChat(){history=[];showWelcome();}
+
+// ===== VOICE =====
+function startListen(){
+  if(!('webkitSpeechRecognition'in window)&&!('SpeechRecognition'in window)){alert('Voice not supported. Please use Chrome browser.');return;}
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  recog=new SR();recog.continuous=false;recog.interimResults=false;
+  const lm={en:'en-US',ur:'ur-PK',ps:'ps-AF'};
+  recog.lang=lm[lang]||'en-US';
+  recog.onstart=()=>{document.getElementById('vbar').classList.add('show');document.getElementById('mic').classList.add('on');};
+  recog.onresult=e=>{document.getElementById('inp').value=e.results[0][0].transcript;stopListen();setTimeout(sendMsg,400);};
+  recog.onerror=()=>stopListen();
+  recog.onend=()=>stopListen();
+  recog.start();
+}
+function stopListen(){if(recog){try{recog.stop();}catch(e){}recog=null;}document.getElementById('vbar').classList.remove('show');document.getElementById('mic').classList.remove('on');}
+function toggleVoice(){voiceOn=!voiceOn;const b=document.getElementById('vt-btn');b.classList.toggle('on',voiceOn);b.textContent=voiceOn?'🔊 Voice ON':'🔊 Voice';}
+function speak(t){if(!synth)return;synth.cancel();const ct=t.replace(/<[^>]+>/g,'').substring(0,500);const u=new SpeechSynthesisUtterance(ct);const vs=synth.getVoices();if(lang==='ur'){const v=vs.find(v=>v.lang.includes('ur')||v.lang.includes('hi'));if(v)u.voice=v;}else{const v=vs.find(v=>v.lang.includes('en')&&(v.name.includes('Female')||v.name.includes('Samantha')||v.name.includes('Karen')));if(v)u.voice=v;}u.rate=0.95;u.pitch=1;synth.speak(u);}
+if(synth)synth.onvoiceschanged=()=>synth.getVoices();
+
+// ===== LANGUAGE =====
+function setLang(l){lang=l;updateLangBtns();const w=wisdoms[new Date().getDay()%wisdoms.length];document.getElementById('wq').textContent=l==='en'?w.en:w.ur;}
+function updateLangBtns(){document.querySelectorAll('.lb').forEach(b=>b.classList.remove('on'));const b=document.querySelector('.lb[onclick="setLang(\''+lang+'\')"]');if(b)b.classList.add('on');}
+
+// ===== GOALS =====
+function renderGoals(){const gl=document.getElementById('goals-list');const gs=user.goals||[];if(!gs.length){gl.innerHTML='<div style="font-size:11px;color:var(--tx3);font-style:italic">No goals yet.</div>';return;}gl.innerHTML=gs.map(g=>'<div class="gr"><div class="gd"></div><div class="gt">'+g+'</div></div>').join('');}
+function openGoals(){const gs=user.goals||[];document.getElementById('g1').value=gs[0]||'';document.getElementById('g2').value=gs[1]||'';document.getElementById('g3').value=gs[2]||'';document.getElementById('gov').classList.add('open');}
+function closeGoals(){document.getElementById('gov').classList.remove('open');}
+function saveGoals(){const gs=[v('g1'),v('g2'),v('g3')].filter(Boolean);user.goals=gs;saveUser();renderGoals();closeGoals();}
+
+// ===== JOURNAL =====
+function openJournal(){renderJournal();document.getElementById('jov').classList.add('open');}
+function closeJournal(){document.getElementById('jov').classList.remove('open');}
+function saveJournal(){const t=document.getElementById('jta').value.trim();if(!t)return;const j=user.journal||[];j.unshift({date:new Date().toLocaleDateString(),text:t});user.journal=j.slice(0,20);saveUser();document.getElementById('jta').value='';renderJournal();}
+function renderJournal(){const c=document.getElementById('jentries');const j=user.journal||[];if(!j.length){c.innerHTML='<p style="font-size:12px;color:var(--tx3)">No entries yet.</p>';return;}c.innerHTML=j.map(e=>'<div class="je"><div class="je-d">'+e.date+'</div><div class="je-t">'+e.text+'</div></div>').join('');}
+
+// ===== HELPERS =====
+function v(id){return document.getElementById(id).value.trim();}
+function se(id,msg){const e=document.getElementById(id);e.textContent=msg;e.style.display='block';}
+function clearMsg(...ids){ids.forEach(id=>{const e=document.getElementById(id);if(e)e.style.display='none';});}
+function getUsers(){return JSON.parse(localStorage.getItem('sage_users')||'[]');}
+function saveUsers(us){localStorage.setItem('sage_users',JSON.stringify(us));}
+function saveUser(){localStorage.setItem('sage_user',JSON.stringify(user));const us=getUsers();const i=us.findIndex(u=>u.email===user.email);if(i!==-1){us[i]=user;saveUsers(us);}}
+function hkey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}}
+function arz(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,90)+'px';}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded',()=>{
+  const saved=localStorage.getItem('sage_user');
+  if(saved){user=JSON.parse(saved);updateNav();showPage('app');initApp();}
+  else{showPage('land');}
+  document.addEventListener('keydown',e=>{
+    if(document.getElementById('pg-signup').classList.contains('on')&&e.key==='Enter')doSignup();
+    if(document.getElementById('pg-login').classList.contains('on')&&e.key==='Enter')doLogin();
+  });
+});
+</script>
+</body>
+</html>
